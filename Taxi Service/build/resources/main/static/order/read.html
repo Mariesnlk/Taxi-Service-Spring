@@ -1,10 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Order</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Order Read</title>
+
 </head>
 <body>
+<div class="w3-container">
+    <p id="orderId" hidden><span th:text="${order_id}"/></p>
 
+    <div class="w3-container w3-bar w3-blue">
+        <span class="w3-bar-item" style="padding-left:1px"><b>View Order</b></span>
+
+        <a th:href="@{'/ui/order/update/' + ${order_id}}" class="w3-bar-item w3-button" style="float: right;">
+            <img th:src="@{/images/icon_edit.gif}"
+                 alt="modify"
+                 style="width:27px;height:27px;"
+                 title="modify"></a>
+
+        <span class="w3-bar-item w3-button" style="float: right;">
+            <img th:src="@{/images/icon_delete.gif}"
+                 alt="delete"
+                 style="width:27px;height:27px;"
+                 title="delete"
+                 id="btnDeleteTopic">
+        </span>
+    </div>
+    <br>
+
+    <table id="orders_table" class="w3-table w3-striped w3-bordered">
+        <tr>
+            <th>Id</th>
+            <th>address From</th>
+            <th>address To</th>
+            <th>passengers Number</th>
+            <th>passengers Id</th>
+            <th>auto Id</th>
+            <th>price</th>
+            <th>discount</th>
+            <th>time To Wait</th>
+            <th>data</th>
+
+        </tr>
+    </table>
+    <br>
+    <br>
+
+    <form action="/ui/order/list">
+        <input type="submit" value="Back"/>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            cache: false,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
+
+
+        $(document).delegate('#btnDeleteOrder','click',function(event){
+            event.preventDefault();
+
+            var orderId = $('#orderId').text();
+
+            console.log(id);
+
+            alert("orderId="+id);
+
+            alert("button Delete!");
+
+            $.ajax({
+                type: "DELETE",
+                url: '/order/' + orderId,
+                //data: JSON.stringify(topicDTO),
+                success: function(result){
+                    location.href="/ui/order/list";
+                    window.setTimeout(function(){
+                        location.reload();
+                    }, 1000);
+
+                    alert('SUCCESS!');
+                },
+                error: function(err){
+                    alert('ERROR!');
+                }
+            });
+        });
+
+
+        function ajaxGet(){
+
+            var orderId = $('#orderId').text();
+
+            $.getJSON('/orders/' + id, function(json){
+
+                console.log(json);
+                alert('json.name='+json.name);
+
+                var tr = [];
+
+                tr.push('<tr>');
+                tr.push('<td>Id</td>');
+                tr.push('<td>' + json.id+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Name</td>');
+                tr.push('<td>' + json.name+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Description</td>');
+                tr.push('<td>' + json.description+'</td>');
+                tr.push('</tr>');
+
+                $('#orders_table').append($(tr.join('')))
+            });
+        }
+
+        $(document).ready(function() {
+
+            ajaxGet();
+        });
+
+    </script>
+</div>
 </body>
 </html>
