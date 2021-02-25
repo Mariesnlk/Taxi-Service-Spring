@@ -15,7 +15,7 @@
     <div class="w3-container w3-bar w3-blue">
         <span class="w3-bar-item" style="padding-left:1px"><b>View Order</b></span>
 
-        <a th:href="@{'/ui/order/update/' + ${order_id}}" class="w3-bar-item w3-button" style="float: right;">
+        <a th:href="@{'/ui/orders/update/' + ${order_id}}" class="w3-bar-item w3-button" style="float: right;">
             <img th:src="@{/images/icon_edit.gif}"
                  alt="modify"
                  style="width:27px;height:27px;"
@@ -26,30 +26,22 @@
                  alt="delete"
                  style="width:27px;height:27px;"
                  title="delete"
-                 id="btnDeleteTopic">
+                 id="btnDeleteOrder">
         </span>
     </div>
     <br>
 
-    <table id="orders_table" class="w3-table w3-striped w3-bordered">
+    <table id="orders_entity_table" class="w3-table w3-striped w3-bordered">
         <tr>
-            <th>Id</th>
-            <th>address From</th>
-            <th>address To</th>
-            <th>passengers Number</th>
-            <th>passengers Id</th>
-            <th>auto Id</th>
-            <th>price</th>
-            <th>discount</th>
-            <th>time To Wait</th>
-            <th>data</th>
+            <th>Property Name</th>
+            <th>Property Value</th>
 
         </tr>
     </table>
     <br>
     <br>
 
-    <form action="/ui/order/list">
+    <form action="/ui/orders/list">
         <input type="submit" value="Back"/>
     </form>
 
@@ -70,18 +62,18 @@
 
             var orderId = $('#orderId').text();
 
-            console.log(id);
+            console.log(orderId);
 
-            alert("orderId="+id);
+            alert("orderId="+orderId);
 
             alert("button Delete!");
 
             $.ajax({
                 type: "DELETE",
-                url: '/order/' + orderId,
-                //data: JSON.stringify(topicDTO),
+                url: '/orders/' + orderId,
+                //data: JSON.stringify(orderDTO),
                 success: function(result){
-                    location.href="/ui/order/list";
+                    location.href="/ui/orders/list";
                     window.setTimeout(function(){
                         location.reload();
                     }, 1000);
@@ -99,10 +91,10 @@
 
             var orderId = $('#orderId').text();
 
-            $.getJSON('/orders/' + id, function(json){
+            $.getJSON('/orders/' + orderId, function(json){
 
                 console.log(json);
-                alert('json.name='+json.name);
+                alert('json.price='+json.price);
 
                 var tr = [];
 
@@ -112,16 +104,51 @@
                 tr.push('</tr>');
 
                 tr.push('<tr>');
-                tr.push('<td>Name</td>');
-                tr.push('<td>' + json.name+'</td>');
+                tr.push('<td>Address From</td>');
+                tr.push('<td>' + json.addressFrom+'</td>');
                 tr.push('</tr>');
 
                 tr.push('<tr>');
-                tr.push('<td>Description</td>');
-                tr.push('<td>' + json.description+'</td>');
+                tr.push('<td>Address To</td>');
+                tr.push('<td>' + json.addressTo+'</td>');
                 tr.push('</tr>');
 
-                $('#orders_table').append($(tr.join('')))
+                tr.push('<tr>');
+                tr.push('<td>Passengers Number</td>');
+                tr.push('<td>' + json.passengersNumber+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Passenger Id</td>');
+                tr.push('<td>' + json.passengerId+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Auto Id</td>');
+                tr.push('<td>' + json.autoId+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Price</td>');
+                tr.push('<td>' + json.price+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Discount</td>');
+                tr.push('<td>' + json.discount+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Time To Wait</td>');
+                tr.push('<td>' + json.timeToWait+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Date</td>');
+                tr.push('<td>' + json.date+'</td>');
+                tr.push('</tr>');
+
+                $('#orders_entity_table').append($(tr.join('')))
             });
         }
 

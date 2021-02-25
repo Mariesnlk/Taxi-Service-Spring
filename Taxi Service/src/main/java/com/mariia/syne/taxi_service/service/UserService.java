@@ -21,7 +21,7 @@ public class UserService {
         return users;
     }
 
-    public User getUser(String id) {
+    public User getUser(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -30,12 +30,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(User user, String id) {
+    public void updateUser(User user, Integer id) {
 
         userRepository.save(user);
     }
 
-    public void deleteUser(String id) {
+    public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 }

@@ -29,7 +29,7 @@ public class AutoRestController {
     }
 
     @GetMapping("/{id}")
-    public Auto getAuto(@PathVariable String id) {
+    public Auto getAuto(@PathVariable Integer id) {
 
         return autoService.getAuto(id);
     }
@@ -41,13 +41,13 @@ public class AutoRestController {
     }
 
     @PutMapping("/{id}")
-    public void updateAuto(@RequestBody Auto auto, @PathVariable String id) {
+    public void updateAuto(@RequestBody Auto auto, @PathVariable Integer id) {
 
         autoService.updateAuto(auto, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAuto(@PathVariable String id) {
+    public void deleteAuto(@PathVariable Integer id) {
 
         autoService.deleteAuto(id);
     }

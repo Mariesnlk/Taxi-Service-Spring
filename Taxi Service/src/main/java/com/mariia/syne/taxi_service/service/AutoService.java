@@ -21,7 +21,7 @@ public class AutoService {
         return autos;
     }
 
-    public Auto getAuto(String id) {
+    public Auto getAuto(Integer id) {
         return autoRepository.findById(id).orElse(null);
     }
 
@@ -30,12 +30,12 @@ public class AutoService {
         autoRepository.save(auto);
     }
 
-    public void updateAuto(Auto auto, String id) {
+    public void updateAuto(Auto auto, Integer id) {
 
         autoRepository.save(auto);
     }
 
-    public void deleteAuto(String id) {
+    public void deleteAuto(Integer id) {
         autoRepository.deleteById(id);
     }
 }

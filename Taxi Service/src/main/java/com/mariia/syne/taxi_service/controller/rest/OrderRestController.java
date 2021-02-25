@@ -29,7 +29,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/{id}")
-    public TaxiOrder getOrder(@PathVariable String id) {
+    public TaxiOrder getOrder(@PathVariable Integer id) {
 
         return orderService.getOrder(id);
     }
@@ -41,13 +41,13 @@ public class OrderRestController {
     }
 
     @PutMapping("/{id}")
-    public void updateOrder(@RequestBody TaxiOrder taxiOrder, @PathVariable String id) {
+    public void updateOrder(@RequestBody TaxiOrder taxiOrder, @PathVariable Integer id) {
 
         orderService.updateOrder(taxiOrder, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable String id) {
+    public void deleteOrder(@PathVariable Integer id) {
 
         orderService.deleteOrder(id);
     }

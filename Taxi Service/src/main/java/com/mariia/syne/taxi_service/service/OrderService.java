@@ -23,7 +23,7 @@ public class OrderService {
         return taxiOrders;
     }
 
-    public TaxiOrder getOrder(String id){
+    public TaxiOrder getOrder(Integer id){
         return orderRepository.findById(id).orElse(null);
     }
 
@@ -32,12 +32,12 @@ public class OrderService {
         orderRepository.save(taxiOrder);
     }
 
-    public void updateOrder(TaxiOrder taxiOrder, String id){
+    public void updateOrder(TaxiOrder taxiOrder, Integer id){
 
         orderRepository.save(taxiOrder);
     }
 
-    public void deleteOrder(String id){
+    public void deleteOrder(Integer id){
         orderRepository.deleteById(id);
     }
 }

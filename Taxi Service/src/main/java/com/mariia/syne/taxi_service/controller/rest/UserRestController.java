@@ -29,7 +29,7 @@ public class UserRestController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable String id) {
+    public User getUser(@PathVariable Integer id) {
 
         return userService.getUser(id);
     }
@@ -41,13 +41,13 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public void updateUser(@RequestBody User user, @PathVariable String id) {
+    public void updateUser(@RequestBody User user, @PathVariable Integer id) {
 
         userService.updateUser(user, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable String id) {
+    public void deleteUser(@PathVariable Integer id) {
 
         userService.deleteUser(id);
     }

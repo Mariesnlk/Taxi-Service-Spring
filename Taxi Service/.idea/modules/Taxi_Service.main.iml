@@ -13,7 +13,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="Taxi_Service.main" />
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="entityManagerFactory" value="05e64561-900c-4739-a85d-d5e76a658679" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

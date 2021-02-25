@@ -1,8 +1,6 @@
 package com.mariia.syne.taxi_service.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -10,6 +8,7 @@ import java.util.Date;
 public class TaxiOrder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String addressFrom;
     private String addressTo;

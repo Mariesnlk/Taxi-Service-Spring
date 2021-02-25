@@ -17,7 +17,7 @@
 
         <span class="w3-bar-item" style="padding-left:1px"><b>Orders List</b></span>
 
-        <a href="/ui/taxiOrders/create" class="w3-bar-item w3-button" style="float: right;">
+        <a href="/ui/orders/create" class="w3-bar-item w3-button" style="float: right;">
             <img th:src="@{/images/icon_create.gif}"
                  alt="create"
                  style="width:27px;height:27px;"
@@ -39,8 +39,6 @@
             <th>discount</th>
             <th>time To Wait</th>
             <th>data</th>
-            <th>Update</th>
-            <th>Delete</th>
         </tr>
 
     </table>
@@ -58,7 +56,7 @@
                  for (var i = 0; i < json.length; i++) {
 
                     tr.push('<tr>');
-                    tr.push('<td><a id=' + json[i].id + ' href="/ui/taxiOrders/read/' + json[i].id + '">' + json[i].id + '</a></td>');
+                    tr.push('<td><a id=' + json[i].id + ' href="/ui/orders/read/' + json[i].id + '">' + json[i].id + '</a></td>');
                     tr.push('<td>'+json[i].addressFrom+'</td>');
                     tr.push('<td>'+json[i].addressTo+'</td>');
                     tr.push('<td>'+json[i].passengersNumber+'</td>');
