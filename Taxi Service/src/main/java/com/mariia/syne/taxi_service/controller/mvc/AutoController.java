@@ -17,6 +17,13 @@ public class AutoController {
         return "auto/list";
     }
 
+
+    @GetMapping("/list-active")
+    public String showActiveAutosList(){
+
+        return "auto/list-active";
+    }
+
     @GetMapping("/read/{auto_id}")
     public String showAutosRead(@PathVariable String auto_id, Model model){
 

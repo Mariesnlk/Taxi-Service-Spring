@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Auto Info</title>
+
 </head>
 <body>
+<div class="w3-container">
+    <p id="autoId" hidden><span th:text="${auto_id}"/></p>
 
+    <div class="w3-container w3-bar w3-blue">
+        <span class="w3-bar-item" style="padding-left:1px"><b>View Order</b></span>
+
+        <a th:href="@{'/ui/autos/update/' + ${auto_id}}" class="w3-bar-item w3-button" style="float: right;">
+            <img th:src="@{/images/icon_edit.gif}"
+                 alt="modify"
+                 style="width:27px;height:27px;"
+                 title="modify"></a>
+
+        <span class="w3-bar-item w3-button" style="float: right;">
+            <img th:src="@{/images/icon_delete.gif}"
+                 alt="delete"
+                 style="width:27px;height:27px;"
+                 title="delete"
+                 id="btnDeleteAuto">
+        </span>
+    </div>
+    <br>
+
+    <table id="autos_entity_table" class="w3-table w3-striped w3-bordered">
+        <tr>
+            <th>Property Name</th>
+            <th>Property Value</th>
+
+        </tr>
+    </table>
+    <br>
+    <br>
+
+    <form action="/ui/autos/list">
+        <input type="submit" value="Back"/>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            cache: false,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
+
+
+        $(document).delegate('#btnDeleteAuto','click',function(event){
+            event.preventDefault();
+
+            var autoId = $('#autoId').text();
+
+            console.log(autoId);
+
+            alert("autoId="+autoId);
+
+            alert("button Delete!");
+
+            $.ajax({
+                type: "DELETE",
+                url: '/autos/' + autoId,
+                //data: JSON.stringify(autoDTO),
+                success: function(result){
+                    location.href="/ui/autos/list";
+                    window.setTimeout(function(){
+                        location.reload();
+                    }, 1000);
+
+                    alert('SUCCESS!');
+                },
+                error: function(err){
+                    alert('ERROR!');
+                }
+            });
+        });
+
+
+        function ajaxGet(){
+
+            var autoId = $('#autoId').text();
+
+            $.getJSON('/autos/' + autoId, function(json){
+
+                console.log(json);
+
+                var tr = [];
+
+                tr.push('<tr>');
+                tr.push('<td>Id</td>');
+                tr.push('<td>' + json.id+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Passengers Capacity</td>');
+                tr.push('<td>' + json.passengersCapacity+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>Category</td>');
+                tr.push('<td>' + json.category+'</td>');
+                tr.push('</tr>');
+
+                tr.push('<tr>');
+                tr.push('<td>status</td>');
+                tr.push('<td>' + json.status+'</td>');
+                tr.push('</tr>');
+
+
+                $('#autos_entity_table').append($(tr.join('')))
+            });
+        }
+
+        $(document).ready(function() {
+
+            ajaxGet();
+        });
+
+    </script>
+</div>
 </body>
 </html>

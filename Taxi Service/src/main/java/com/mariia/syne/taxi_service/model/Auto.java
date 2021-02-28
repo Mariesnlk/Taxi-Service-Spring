@@ -1,18 +1,21 @@
 package com.mariia.syne.taxi_service.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Auto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="passengers_capacity")
     private int passengersCapacity;
+
+    @Column(name="category")
     private String category;
+
+    @Column(name="status")
     private String status;
 
     public Auto() {

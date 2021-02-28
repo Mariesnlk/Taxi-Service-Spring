@@ -34,6 +34,14 @@ public class OrderController {
         return "order/create";
     }
 
+//    @GetMapping("/create/{order_auto_id}")
+//    public String showOrdersCreate(@PathVariable String order_auto_id, Model model){
+//
+//        model.addAttribute("order_auto_id",order_auto_id);
+//
+//        return "order/create";
+//    }
+
     @GetMapping("/update/{order_id}")
     public String showOrdersUpdate(@PathVariable String order_id, Model model){
 

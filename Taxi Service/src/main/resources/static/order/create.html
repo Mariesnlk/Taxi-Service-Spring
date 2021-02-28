@@ -10,6 +10,7 @@
 </head>
 <body>
 <div class="w3-container">
+<!--    <p id="order_auto_id" hidden><span th:text="${order_auto_id}"/></p>-->
 
     <div class="w3-container w3-bar w3-blue">
         <span class="w3-bar-item" style="padding-left:1px"><b>Create Order</b></span>
@@ -20,6 +21,7 @@
         <tr>
             <th>Property Name</th>
             <th>Property Value</th>
+<!--            <th></th>-->
         </tr>
 
 
@@ -46,6 +48,8 @@
         <tr>
             <td>Auto Id</td>
             <td><input id="autoId" name="autoId_name" type="text"></td>
+<!--            <td><form action="/ui/autos/list-active"><input type="submit" value="Choose Auto"/></form></td>-->
+
         </tr>
         <tr>
             <td>Price</td>
@@ -141,6 +145,14 @@
 
 
         });
+
+        //$(document).ready(function() {
+
+
+        //    var order_auto_id = $('#order_auto_id').val();
+        //    console.log(order_auto_id);
+        //    alert("order_auto_id="+order_auto_id);
+        //});
 
 
     </script>

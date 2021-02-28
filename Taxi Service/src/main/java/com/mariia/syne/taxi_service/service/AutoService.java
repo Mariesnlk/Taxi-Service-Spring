@@ -10,6 +10,9 @@ import java.util.List;
 
 @Service
 public class AutoService {
+
+    public static final String STATUS_ACTIVE = "ACTIVE";
+
     @Autowired
     private AutoRepository autoRepository;
 
@@ -37,6 +40,17 @@ public class AutoService {
 
     public void deleteAuto(Integer id) {
         autoRepository.deleteById(id);
+    }
+
+    public List<Auto> getActiveAutos() {
+        List<Auto> autos = getAllAutos();
+        List<Auto> activeAutos = new ArrayList<>();
+        for (Auto auto : autos) {
+            if (STATUS_ACTIVE.equals(auto.getStatus())) {
+                activeAutos.add(auto);
+            }
+        }
+        return activeAutos;
     }
 }
 

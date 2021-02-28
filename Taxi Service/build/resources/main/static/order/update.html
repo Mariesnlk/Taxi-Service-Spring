@@ -1,10 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Update Order</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Order Update</title>
+
 </head>
+
 <body>
+<div class="w3-container">
+
+    <p id="orderId" hidden><span th:text="${order_id}"/></p>
+
+    <div class="w3-container w3-bar w3-blue">
+        <span class="w3-bar-item" style="padding-left:1px"><b>Update Order</b></span>
+    </div>
+    <br>
+
+
+    <table id="update_order_entity_table" class="w3-table w3-bordered">
+        <tr>
+            <th>Property Name</th>
+            <th>Property Value</th>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td><label id="order_id" name="order_id_name" ></label></td>
+        </tr>
+
+        <tr>
+            <td>Address From</td>
+            <td><input id="addressFrom" name="addressFrom_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Address To</td>
+            <td><input id="addressTo" name="addressTo_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Passengers Number</td>
+            <td><input id="passengersNumber" name="passengersNumber_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Passenger Id</td>
+            <td><input id="passengerId" name="passengerId_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Auto Id</td>
+            <td><input id="autoId" name="autoId_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input id="price" name="price_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Discount</td>
+            <td><input id="discount" name="discount_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Time To Wait</td>
+            <td><input id="timeToWait" name="timeToWait_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input id="date" name="date_name" type="text"></td>
+        </tr>
+
+    </table>
+    <br>
+    <br>
+
+
+    <div class="container">
+        <button id="btnSave" class="btnSaveOrder">Save</button>
+        <button id="btnGoToRead" type="button">Cancel</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            cache: false,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
+
+        function OrderDTO(id,addressFrom,addressTo,passengersNumber,passengerId,autoId,price,discount,timeToWait,date){
+            this.id = id;
+            this.addressFrom=addressFrom;
+            this.addressTo=addressTo;
+            this.passengersNumber=passengersNumber;
+            this.passengerId=passengerId;
+            this.autoId=autoId;
+            this.price=price;
+            this.discount=discount;
+            this.timeToWait=timeToWait;
+            this.date=date;
+        }
+
+        $(document).delegate('#btnSave','click',function(event){
+            event.preventDefault();
+
+            var orderId = $('#orderId').text();
+
+            var id = orderId;
+            var addressFrom = $('#addressFrom').val();
+            var addressTo = $('#addressTo').val();
+            var passengersNumber = $('#passengersNumber').val();
+            var passengerId = $('#passengerId').val();
+            var autoId = $('#autoId').val();
+            var price = $('#price').val();
+            var discount = $('#discount').val();
+            var timeToWait = $('#timeToWait').val();
+            var date = $('#date').val();
+
+            var orderDTO = new OrderDTO(id,addressFrom,addressTo,passengersNumber,passengerId,autoId,price,discount,timeToWait,date);
+
+            console.log(orderDTO);
+            console.log(JSON.stringify(orderDTO));
+
+            alert("orderDTO.price="+orderDTO.price);
+
+            alert("button Save!");
+
+            $.ajax({
+                type: "PUT",
+                url: '/orders/' + orderId,
+                data: JSON.stringify(orderDTO),
+                success: function(result){
+                    location.href="/ui/orders/read/" + orderId;
+                    window.setTimeout(function(){
+                        location.reload();
+                    }, 1000);
+
+                    alert('SUCCESS!');
+                },
+                error: function(err){
+                    alert('ERROR!');
+                }
+            });
+        });
+
+
+
+        $(document).delegate('#btnGoToRead','click',function(result){
+
+            var orderId = $('#orderId').text();
+
+            location.href="/ui/orders/read/" + orderId;
+            window.setTimeout(function(){
+                location.reload();
+            }, 1000);
+
+            alert('SUCCESS!');
+        });
+
+
+
+
+
+
+        function ajaxGet(){
+
+            var orderId = $('#orderId').text();
+
+            $.getJSON('/orders/' + orderId, function(json){
+
+                console.log(json);
+                alert('json.price='+json.price);
+
+                $('#order_id').text(json.id);
+                $('#addressFrom').val(json.addressFrom);
+                $('#addressTo').val(json.addressTo);
+                $('#passengersNumber').val(json.passengersNumber);
+                $('#passengerId').val(json.passengerId);
+                $('#autoId').val(json.autoId);
+                $('#price').val(json.price);
+                $('#discount').val(json.discount);
+                $('#timeToWait').val(json.timeToWait);
+                $('#date').val(json.date);
+
+            });
+        }
+
+        $(document).ready(function() {
+
+            ajaxGet();
+        });
+
+    </script>
+
+</div>
 
 </body>
 </html>

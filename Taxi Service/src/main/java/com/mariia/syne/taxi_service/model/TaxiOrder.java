@@ -8,16 +8,34 @@ import java.util.Date;
 public class TaxiOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="address_from")
     private String addressFrom;
+
+    @Column(name="address_to")
     private String addressTo;
+
+    @Column(name="passengers_number")
     private int passengersNumber;
+
+    @Column(name="passenger_id")
     private Integer passengerId;
+
+    @Column(name="auto_id")
     private Integer autoId;
+
+    @Column(name="price")
     private double price;
+
+    @Column(name="discount")
     private double discount;
+
+    @Column(name="time_to_wait")
     private int timeToWait;
+
+    @Column(name="date")
     private Date date;
 
     public TaxiOrder() {

@@ -28,6 +28,12 @@ public class AutoRestController {
         return autoService.getAllAutos();
     }
 
+    @GetMapping("/active")
+    public List<Auto> getActiveAutos() {
+
+        return autoService.getActiveAutos();
+    }
+
     @GetMapping("/{id}")
     public Auto getAuto(@PathVariable Integer id) {
 

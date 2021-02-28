@@ -1,10 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Update User</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>User Update</title>
+
 </head>
+
 <body>
+<div class="w3-container">
+
+    <p id="userId" hidden><span th:text="${user_id}"/></p>
+
+    <div class="w3-container w3-bar w3-blue">
+        <span class="w3-bar-item" style="padding-left:1px"><b>Update User</b></span>
+    </div>
+    <br>
+
+
+    <table id="update_user_entity_table" class="w3-table w3-bordered">
+        <tr>
+            <th>Property Name</th>
+            <th>Property Value</th>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td><label id="user_id" name="user_id_name" ></label></td>
+        </tr>
+
+        <tr>
+            <td>First Name</td>
+            <td><input id="firstName" name="firstName_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input id="lastName" name="lastName_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Login</td>
+            <td><input id="login" name="login_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input id="password" name="password_name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td><input id="role" name="role_name" type="text"></td>
+        </tr>
+
+    </table>
+    <br>
+    <br>
+
+
+    <div class="container">
+        <button id="btnSave" class="btnSaveUser">Save</button>
+        <button id="btnGoToRead" type="button">Cancel</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            cache: false,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
+
+        function UserDTO(id,firstName,lastName,login,password,role){
+            this.id = id;
+            this.firstName=firstName;
+            this.lastName=lastName;
+            this.login=login;
+            this.password=password;
+            this.role=role;
+        }
+
+        $(document).delegate('#btnSave','click',function(event){
+            event.preventDefault();
+
+            var userId = $('#userId').text();
+
+            var id = userId;
+            var firstName = $('#firstName').val();
+            var lastName = $('#lastName').val();
+            var login = $('#login').val();
+            var password = $('#password').val();
+            var role = $('#role').val();
+
+            var userDTO = new UserDTO(id,firstName,lastName,login,password,role);
+
+            console.log(userDTO);
+            console.log(JSON.stringify(userDTO));
+
+            alert("userDTO.firstName="+userDTO.firstName);
+
+            alert("button Save!");
+
+            $.ajax({
+                type: "PUT",
+                url: '/users/' + userId,
+                data: JSON.stringify(userDTO),
+                success: function(result){
+                    location.href="/ui/users/read/" + userId;
+                    window.setTimeout(function(){
+                        location.reload();
+                    }, 1000);
+
+                    alert('SUCCESS!');
+                },
+                error: function(err){
+                    alert('ERROR!');
+                }
+            });
+        });
+
+
+
+        $(document).delegate('#btnGoToRead','click',function(result){
+
+            var userId = $('#userId').text();
+
+            location.href="/ui/users/read/" + userId;
+            window.setTimeout(function(){
+                location.reload();
+            }, 1000);
+
+            alert('SUCCESS!');
+        });
+
+
+
+        function ajaxGet(){
+
+            var userId = $('#userId').text();
+
+            $.getJSON('/users/' + userId, function(json){
+
+                console.log(json);
+                alert("json.firstName="+json.firstName);
+
+                $('#user_id').text(json.id);
+                $('#firstName').val(json.firstName);
+                $('#lastName').val(json.lastName);
+                $('#login').val(json.login);
+                $('#password').val(json.password);
+                $('#role').val(json.role);
+
+            });
+        }
+
+        $(document).ready(function() {
+
+            ajaxGet();
+        });
+
+    </script>
+
+</div>
 
 </body>
 </html>

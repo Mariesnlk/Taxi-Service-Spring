@@ -1,52 +1,17 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml"
-      lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <title>Taxi Service</title>
 </head>
 <body>
 
-<h1>Welcome to Taxi Service!</h1>
+    <p>Welcome to Taxi Service!</p>
 
-<div class = "w3-container">
+    <p><a href="/ui/autos/list">Autos</a></p>
+    <p><a href="/ui/autos/list-active">Available Autos</a></p>
+    <p><a href="/ui/users/list">Users</a></p>
+    <p><a href="/ui/orders/list">Orders</a></p>
 
-    <div class="w3-container w3-bar w3-blue">
-
-        <span class="w3-bar-item" style="padding-left:1px"><b>Home Page</b></span>
-
-    </div>
-    <br>
-
-    <table id="orders_table" class="w3-table w3-striped w3-bordered w3-hoverable">
-
-        <tr>
-            <th>Link</th>
-            <th>Description</th>
-        </tr>
-
-        <tr>
-            <td><a href="ui/orders/list">All Orders</a></td>
-            <td>List of orders</td>
-        </tr>
-
-<!--        <tr>-->
-<!--            <td><a href="/ui/topic-info/info">Topics Information</a></td>-->
-<!--            <td>Information about Topics from another microservice</td>-->
-<!--        </tr>-->
-
-<!--        <tr>-->
-<!--            <td><a href="/ui/admin/index">Admin Page</a></td>-->
-<!--            <td>Advanced settings of project for users with ADMIN role</td>-->
-<!--        </tr>-->
-
-    </table>
-
-
-</div>
 </body>
 </html>
