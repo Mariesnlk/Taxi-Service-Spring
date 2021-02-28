@@ -8,7 +8,7 @@ import java.util.Date;
 public class TaxiOrder {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="address_from")
@@ -23,8 +23,12 @@ public class TaxiOrder {
     @Column(name="passenger_id")
     private Integer passengerId;
 
-    @Column(name="auto_id")
-    private Integer autoId;
+//    @Column(name="auto_id")
+//    private Integer autoId;
+
+    @ManyToOne
+    @JoinColumn(name="auto_id")
+    private Auto auto;
 
     @Column(name="price")
     private double price;
@@ -42,37 +46,37 @@ public class TaxiOrder {
     }
 
     public TaxiOrder(String addressFrom, String addressTo, int passengersNumber, Integer passengerId,
-                     Integer autoId, double price, double discount, int timeToWait, Date date) {
+                     Auto auto, double price, double discount, int timeToWait, Date date) {
         this.addressFrom = addressFrom;
         this.addressTo = addressTo;
         this.passengersNumber = passengersNumber;
         this.passengerId = passengerId;
-        this.autoId = autoId;
+        this.auto = auto;
         this.price = price;
         this.discount = discount;
         this.timeToWait = timeToWait;
         this.date = date;
     }
 
-    public TaxiOrder(String addressFrom, String addressTo, int passengersNumber, Integer passengerId, Integer autoId, double price, double discount, int timeToWait) {
+    public TaxiOrder(String addressFrom, String addressTo, int passengersNumber, Integer passengerId, Auto auto, double price, double discount, int timeToWait) {
         this.addressFrom = addressFrom;
         this.addressTo = addressTo;
         this.passengersNumber = passengersNumber;
         this.passengerId = passengerId;
-        this.autoId = autoId;
+        this.auto = auto;
         this.price = price;
         this.discount = discount;
         this.timeToWait = timeToWait;
     }
 
     public TaxiOrder(Integer id, String addressFrom, String addressTo, int passengersNumber,
-                     Integer passengerId, Integer autoId, double price, double discount, int timeToWait, Date date) {
+                     Integer passengerId, Auto auto, double price, double discount, int timeToWait, Date date) {
         this.id = id;
         this.addressFrom = addressFrom;
         this.addressTo = addressTo;
         this.passengersNumber = passengersNumber;
         this.passengerId = passengerId;
-        this.autoId = autoId;
+        this.auto = auto;
         this.price = price;
         this.discount = discount;
         this.timeToWait = timeToWait;
@@ -119,12 +123,12 @@ public class TaxiOrder {
         this.passengerId = passengerId;
     }
 
-    public Integer getAutoId() {
-        return autoId;
+    public Auto getAuto() {
+        return auto;
     }
 
-    public void setAutoId(Integer autoId) {
-        this.autoId = autoId;
+    public void setAuto(Auto auto) {
+        this.auto = auto;
     }
 
     public double getPrice() {
@@ -167,7 +171,7 @@ public class TaxiOrder {
                 ", addressTo='" + addressTo + '\'' +
                 ", passengersNumber=" + passengersNumber +
                 ", passengerId=" + passengerId +
-                ", autoID=" + autoId +
+                ", auto=" + auto +
                 ", price=" + price +
                 ", discount=" + discount +
                 ", timeToWait=" + timeToWait +

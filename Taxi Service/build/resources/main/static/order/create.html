@@ -10,16 +10,21 @@
 </head>
 <body>
 <div class="w3-container">
+<!--    <p id="order_auto_id" hidden><span th:text="${order_auto_id}"/></p>-->
 
     <div class="w3-container w3-bar w3-blue">
         <span class="w3-bar-item" style="padding-left:1px"><b>Create Order</b></span>
     </div>
     <br>
 
+    <!--<a href="ui/autos/list-active">choose auto</a>-->
+    <button onclick="location.href='/ui/autos/list-active'" type="button">choose auto</button>
+
     <table id="create_order_entity_table" class="w3-table w3-bordered">
         <tr>
             <th>Property Name</th>
             <th>Property Value</th>
+<!--            <th></th>-->
         </tr>
 
 
@@ -45,7 +50,9 @@
         </tr>
         <tr>
             <td>Auto Id</td>
-            <td><input id="autoId" name="autoId_name" type="text"></td>
+            <td><input readonly id="autoId" name="autoId_name" type="text"></td>
+<!--            <td><form action="/ui/autos/list-active"><input type="submit" value="Choose Auto"/></form></td>-->
+
         </tr>
         <tr>
             <td>Price</td>
@@ -85,13 +92,13 @@
             }
         });
 
-        function OrderDTO(id,addressFrom,addressTo,passengersNumber,passengerId,autoId,price,discount,timeToWait,date){
+        function OrderDTO(id,addressFrom,addressTo,passengersNumber,passengerId,auto,price,discount,timeToWait,date){
             this.id = id;
             this.addressFrom=addressFrom;
             this.addressTo=addressTo;
             this.passengersNumber=passengersNumber;
             this.passengerId=passengerId;
-            this.autoId=autoId;
+            this.auto=auto;
             this.price=price;
             this.discount=discount;
             this.timeToWait=timeToWait;
@@ -106,13 +113,13 @@
             var addressTo = $('#addressTo').val();
             var passengersNumber = $('#passengersNumber').val();
             var passengerId = $('#passengerId').val();
-            var autoId = $('#autoId').val();
+            var auto = JSON.parse(localStorage.auto);
             var price = $('#price').val();
             var discount = $('#discount').val();
             var timeToWait = $('#timeToWait').val();
             var date = $('#date').val();
 
-            var orderDTO = new OrderDTO(id,addressFrom,addressTo,passengersNumber,passengerId,autoId,price,discount,timeToWait,date);
+            var orderDTO = new OrderDTO(id,addressFrom,addressTo,passengersNumber,passengerId,auto,price,discount,timeToWait,date);
 
             console.log(orderDTO);
             console.log(JSON.stringify(orderDTO));
@@ -140,6 +147,16 @@
             });
 
 
+        });
+
+        $(document).ready(function() {
+
+            if(localStorage.auto){
+                var order_auto = JSON.parse(localStorage.auto);
+                $("#autoId").val(order_auto.id);
+                console.log(order_auto_id);
+                alert("order_auto.id="+order_auto.id);
+            }
         });
 
 

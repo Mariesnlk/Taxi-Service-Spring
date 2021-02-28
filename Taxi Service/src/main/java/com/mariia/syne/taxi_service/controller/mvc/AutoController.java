@@ -27,9 +27,6 @@ public class AutoController {
     @GetMapping("/read/{auto_id}")
     public String showAutosRead(@PathVariable String auto_id, Model model){
 
-        //Topic topic = topicService.getTopic(topic_id);
-        //model.addAttribute("topic",topic);
-
         model.addAttribute("auto_id",auto_id);
 
         return "auto/read";

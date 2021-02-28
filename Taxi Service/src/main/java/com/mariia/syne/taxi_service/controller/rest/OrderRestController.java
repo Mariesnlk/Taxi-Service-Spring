@@ -51,11 +51,5 @@ public class OrderRestController {
 
         orderService.deleteOrder(id);
     }
-
-//    @GetMapping("/init")
-//    public void generateOrders() {
-//
-//        orderService.initTable();
-//    }
 }
 

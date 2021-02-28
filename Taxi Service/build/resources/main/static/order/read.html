@@ -31,7 +31,7 @@
     </div>
     <br>
 
-    <table id="orders_entity_table" class="w3-table w3-striped w3-bordered">
+    <table id="order_entity_table" class="w3-table w3-striped w3-bordered">
         <tr>
             <th>Property Name</th>
             <th>Property Value</th>
@@ -98,57 +98,58 @@
 
                 var tr = [];
 
-                tr.push('<tr>');
-                tr.push('<td>Id</td>');
-                tr.push('<td>' + json.id+'</td>');
-                tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Address From</td>');
-                tr.push('<td>' + json.addressFrom+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Id</td>');
+                    tr.push('<td>' + json.id+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Address To</td>');
-                tr.push('<td>' + json.addressTo+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Address From</td>');
+                    tr.push('<td>' + json.addressFrom+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Passengers Number</td>');
-                tr.push('<td>' + json.passengersNumber+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Address To</td>');
+                    tr.push('<td>' + json.addressTo+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Passenger Id</td>');
-                tr.push('<td>' + json.passengerId+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Passengers Number</td>');
+                    tr.push('<td>' + json.passengersNumber+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Auto Id</td>');
-                tr.push('<td>' + json.autoId+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Passenger Id</td>');
+                    tr.push('<td>' + json.passengerId+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Price</td>');
-                tr.push('<td>' + json.price+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Auto Id</td>');
+                    tr.push('<td>' + json.autoId+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Discount</td>');
-                tr.push('<td>' + json.discount+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Price</td>');
+                    tr.push('<td>' + json.price+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Time To Wait</td>');
-                tr.push('<td>' + json.timeToWait+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Discount</td>');
+                    tr.push('<td>' + json.discount+'</td>');
+                    tr.push('</tr>');
 
-                tr.push('<tr>');
-                tr.push('<td>Date</td>');
-                tr.push('<td>' + json.date+'</td>');
-                tr.push('</tr>');
+                    tr.push('<tr>');
+                    tr.push('<td>Time To Wait</td>');
+                    tr.push('<td>' + json.timeToWait+'</td>');
+                    tr.push('</tr>');
 
-                $('#orders_entity_table').append($(tr.join('')))
+                    tr.push('<tr>');
+                    tr.push('<td>Date</td>');
+                    tr.push('<td>' + json.date+'</td>');
+                    tr.push('</tr>');
+
+                $('#order_entity_table').append($(tr.join('')))
             });
         }
 

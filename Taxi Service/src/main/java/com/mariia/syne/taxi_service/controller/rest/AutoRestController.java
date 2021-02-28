@@ -57,11 +57,5 @@ public class AutoRestController {
 
         autoService.deleteAuto(id);
     }
-
-//    @GetMapping("/init")
-//    public void generateOrders() {
-//
-//        orderService.initTable();
-//    }
 }
 

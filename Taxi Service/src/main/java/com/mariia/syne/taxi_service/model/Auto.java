@@ -1,6 +1,7 @@
 package com.mariia.syne.taxi_service.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Auto {
@@ -17,6 +18,10 @@ public class Auto {
 
     @Column(name="status")
     private String status;
+
+    @OneToMany
+    @JoinColumn(name = "id")
+    private List<TaxiOrder> taxiOrders;
 
     public Auto() {
     }

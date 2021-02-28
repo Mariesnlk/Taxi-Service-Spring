@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
+
+<meta charset="UTF-8">
     <title>Taxi Service</title>
 </head>
 <body>
 
     <p>Welcome to Taxi Service!</p>
 
-    <p><a href="/ui/autos/list">Autos</a></p>
+    <p>Chose Locale</p>
+    <a href="?lang=ru">ru</a>
+    <a href="?lang=en">en</a>
+
+    <p><a th:text="#{index_jsp.autos_list}" href="/ui/autos/list"></a></p>
     <p><a href="/ui/autos/list-active">Available Autos</a></p>
     <p><a href="/ui/users/list">Users</a></p>
     <p><a href="/ui/orders/list">Orders</a></p>

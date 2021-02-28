@@ -20,9 +20,6 @@ public class UserController {
     @GetMapping("/read/{user_id}")
     public String showUsersRead(@PathVariable String user_id, Model model){
 
-        //Topic topic = topicService.getTopic(topic_id);
-        //model.addAttribute("topic",topic);
-
         model.addAttribute("user_id",user_id);
 
         return "user/read";

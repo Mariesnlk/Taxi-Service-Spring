@@ -20,9 +20,6 @@ public class OrderController {
     @GetMapping("/read/{order_id}")
     public String showOrdersRead(@PathVariable String order_id, Model model){
 
-        //Topic topic = topicService.getTopic(topic_id);
-        //model.addAttribute("topic",topic);
-
         model.addAttribute("order_id",order_id);
 
         return "order/read";
@@ -33,14 +30,6 @@ public class OrderController {
 
         return "order/create";
     }
-
-//    @GetMapping("/create/{order_auto_id}")
-//    public String showOrdersCreate(@PathVariable String order_auto_id, Model model){
-//
-//        model.addAttribute("order_auto_id",order_auto_id);
-//
-//        return "order/create";
-//    }
 
     @GetMapping("/update/{order_id}")
     public String showOrdersUpdate(@PathVariable String order_id, Model model){
