@@ -1,25 +1,35 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
 <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Home</title>
 
-<meta charset="UTF-8">
-    <title>Taxi Service</title>
 </head>
 <body>
 
-    <p>Welcome to Taxi Service!</p>
+<div class="w3-container">
 
-    <p>Chose Locale</p>
-    <a href="?lang=ru">ru</a>
-    <a href="?lang=en">en</a>
+    <div class="w3-container w3-bar w3-blue">
+        <span class="w3-bar-item" style="padding-left:1px"><b>Home Page</b></span>
+        <span class="w3-bar-item" style="float: right">
+            <b>Choose language</b>
+            <a href="?lang=ru">ru</a>
+            <a href="?lang=en">en</a>
+        </span>
+    </div>
+    <br>
+
+    <h1 style="text-align: center">Welcome to Taxi Service!</h1>
+
 
     <p><a th:text="#{index_jsp.autos_list}" href="/ui/autos/list"></a></p>
-    <p><a href="/ui/autos/list-active">Available Autos</a></p>
-    <p><a href="/ui/users/list">Users</a></p>
-    <p><a href="/ui/orders/list">Orders</a></p>
+    <p><a th:text="#{index_jsp.available_autos_list}" href="/ui/autos/list-active"></a></p>
+    <p><a th:text="#{index_jsp.users_list}" href="/ui/users/list"></a></p>
+    <p><a th:text="#{index_jsp.orders_list}" href="/ui/orders/list"></a></p>
 
+</div>
 </body>
 </html>
